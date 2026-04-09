@@ -51,7 +51,7 @@ This repository is designed for cross-platform compatibility (Windows 11 and Lin
 
 ### Step 1: Clone the Repository
 ```bash
-git clone [https://github.com/YourUsername/FedVAE-Trans.git](https://github.com/YourUsername/FedVAE-Trans.git)
+git clone [https://github.com/Dharshan-K-2904/FedVAE-Trans.git](https://github.com/Dharshan-K-2904/FedVAE-Trans.git)
 cd FedVAE-Trans
 ```
 
