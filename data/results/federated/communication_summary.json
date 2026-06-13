@@ -1,0 +1,10 @@
+{
+  "total_params": 9869824,
+  "model_size_mb_fp32": 39.48,
+  "model_size_mb_fp16": 19.74,
+  "payload_per_round_fp32": 789.59,
+  "payload_per_round_fp16": 394.79,
+  "total_rounds": 50,
+  "total_comm_fp32_mb": 39479.3,
+  "reduction_fp16_pct": 50.0
+}
