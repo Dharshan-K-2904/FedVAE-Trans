@@ -20,29 +20,32 @@ To counteract the severe latent space collapse typically induced by Non-IID clie
 
 ```mermaid
 graph TD
-    subgraph Edge Client [Local Edge Node / Client]
-        A[Raw System Logs] -->|Drain3 Parsing| B(Log Tokenization)
-        B --> C[Token Embeddings + Positional Encodings]
-        C --> D[BERT-style Transformer Encoder]
-        D --> E{VAE Bottleneck: μ, σ²}
-        E -->|Reparameterization| F[MLP Decoder]
-        F --> G[Reconstruction Error ELBO]
-        G -->|Dynamic Thresholding| H((Anomaly Flag))
+    subgraph EC ["Local Edge Node / Client"]
+        A["Raw System Logs"]
+        B["Drain3 Parsing"] 
+        C["Log Tokenization"]
+        D["Token Embeddings"]
+        E["Transformer Encoder"]
+        F["VAE Bottleneck"]
+        G["MLP Decoder"]
+        H["Anomaly Detection"]
     end
     
-    subgraph Central Server [Aggregation Hub]
-        I[Global Model Weights]
+    subgraph CS ["Aggregation Hub"]
+        I["Global Weights"]
     end
     
-    D -.->|FP16 Local Weight Deltas| J{FedProx Aggregation}
-    F -.->|FP16 Local Weight Deltas| J
-    J -.->|Aggregated Updates| I
-    I -.->|Broadcast Global Weights| D
-    I -.->|Broadcast Global Weights| F
-    
-    style J fill:#4CAF50,stroke:#333,stroke-width:2px,color:#fff
-    style H fill:#f44336,stroke:#333,stroke-width:2px,color:#fff
-    style A fill:#2196F3,stroke:#333,stroke-width:2px,color:#fff
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> H
+    E -.->|FP16 Deltas| I
+    G -.->|FP16 Deltas| I
+    I -.->|Updates| E
+    I -.->|Updates| G
 
 ```
 
@@ -129,7 +132,7 @@ FedVAE-Trans/
 
 ```bash
 # Clone repository
-git clone https://github.com/PES-University/FedVAE-Trans.git
+git clone https://github.com/Dharshan-K-2904/FedVAE-Trans.git
 cd FedVAE-Trans
 
 # Create virtual environment
@@ -437,38 +440,11 @@ Contributions are welcome! Please follow these guidelines:
 
 ---
 
-## 📧 Contact & Support
-
-**Project Lead:** Dharshan K  
-**Institution:** Department of Computer Science, PES University  
-**Email:** dharshan.ksk@pes.edu (or institutional contact)
-
-For issues, feature requests, or discussions:
-- Open a **GitHub Issue** on this repository
-- See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines
-- Check existing issues before submitting duplicates
-
----
-
 ## 🛡️ Ethical Compliance Statement
 
 This research involves the analytical modeling of public, anonymized system logs and network flows. It strictly adheres to privacy-by-design principles through the utilization of a federated learning topology. This structural guarantee ensures that raw telemetry data is never centralized, inspected, or exposed, fully complying with global data protection regulations (e.g., GDPR). No human subject data or personally identifiable information (PII) was utilized, processed, or compromised during the engineering and evaluation of this architecture.
 
 ---
-
-## 📜 Citation & Academic Attribution
-
-If you use this codebase, architecture, or findings in your research, please cite:
-
-```bibtex
-@inproceedings{fedvaetrans2026,
-  title={FedVAE-Trans: Communication-Efficient Federated Variational Transformer for Unsupervised Long-Sequence Log Anomaly Detection},
-  author={Dharshan, K and Chandan, Aparajitha and Padavala, Yeswant},
-  booktitle={Department of Computer Science, PES University},
-  year={2026},
-  note={Advanced Topics in Deep Learning --- Academic Project}
-}
-```
 
 ### Alternative Citation Format (APA):
 
@@ -490,7 +466,6 @@ Dharshan, K., Chandan, A., & Padavala, Y. (2026). FedVAE-Trans: Communication-ef
 | **License** | MIT |
 | **Python Version** | 3.9+ |
 | **Last Updated** | June 2026 |
-| **Status** | ✅ Production-Ready |
 
 ---
 
@@ -514,37 +489,6 @@ Dharshan, K., Chandan, A., & Padavala, Y. (2026). FedVAE-Trans: Communication-ef
 | Federated convergence | 25 rounds | ✅ On schedule |
 | Model interpretability | Reconstruction heatmaps | ✅ Implemented |
 | Privacy compliance | GDPR-aligned | ✅ Verified |
-
----
-
-## 🚀 Deployment Pathways
-
-### For Academic/Research Use
-- Fork this repository for your own experiments
-- Reference results in publications following BibTeX citation above
-- Share improvements via pull requests
-
-### For Production Deployment
-- Deploy on **Modal** serverless platform:
-  ```bash
-  modal run cloud/modal_fl_runner.py
-  ```
-- Or containerize with Docker and deploy on Kubernetes clusters
-- Use pre-trained checkpoints in `results/centralized/B_TransVAE_best.pt` for inference
-
-### For Hugging Face Model Hub
-This project is configured for upload to the Hugging Face Model Hub:
-
-```bash
-# Install Hugging Face CLI
-pip install huggingface-hub
-
-# Login to your account
-huggingface-cli login
-
-# Push model
-huggingface-cli upload FedVAE-Trans results/ --repo-type model
-```
 
 ---
 
