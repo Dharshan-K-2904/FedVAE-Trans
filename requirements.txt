@@ -8,7 +8,7 @@ numpy>=1.26.0
 pandas>=2.2.0
 
 # Federated Learning
-flwr==1.14.0          # Pinned: compatible start_simulation API
+flwr==1.30.0          # Pinned: compatible start_simulation API
 protobuf==4.25.3      # Pinned: matches flwr 1.14.0 gRPC expectations
 
 # Simulation backend for Flower virtual clients
