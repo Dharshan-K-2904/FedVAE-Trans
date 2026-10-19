@@ -28,7 +28,7 @@ streamlit>=1.35.0
 
 # Cloud execution
 modal==0.77.1    # Pinned: newer versions have typer/click CLI compatibility issues
-click==8.1.7     # Pinned: compatible with modal 0.77.1
+click==8.5.0     # Pinned: compatible with modal 0.77.1
 
 # Hyperparameter tuning (Phase 2 ablation)
 optuna>=3.6.0
