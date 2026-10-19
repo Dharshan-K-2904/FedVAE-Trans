@@ -1,0 +1,7 @@
+# Default owners for repository review routing
+*       @Dharshan-K-2904
+
+# Keep project-level governance clear
+/.github/        @Dharshan-K-2904
+/src/            @Dharshan-K-2904
+/tests/          @Dharshan-K-2904
