@@ -40,7 +40,7 @@ dependencies = [
     "numpy>=1.26.0",
     "pandas>=2.2.0",
     "flwr==1.14.0",
-    "protobuf==4.25.3",
+    "protobuf==7.36.2",
     "ray[default]>=2.31.0",
     "drain3>=0.9.11",
     "scikit-learn>=1.4.0",
