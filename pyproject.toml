@@ -39,7 +39,7 @@ dependencies = [
     "torch>=2.5.1",
     "numpy>=1.26.0",
     "pandas>=2.2.0",
-    "flwr==1.14.0",
+    "flwr==1.30.0",
     "protobuf==4.25.3",
     "ray[default]>=2.31.0",
     "drain3>=0.9.11",
