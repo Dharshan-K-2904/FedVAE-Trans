@@ -27,7 +27,7 @@ plotly>=5.20.0
 streamlit>=1.35.0
 
 # Cloud execution
-modal==0.77.1    # Pinned: newer versions have typer/click CLI compatibility issues
+modal==1.6.2    # Pinned: newer versions have typer/click CLI compatibility issues
 click==8.1.7     # Pinned: compatible with modal 0.77.1
 
 # Hyperparameter tuning (Phase 2 ablation)
